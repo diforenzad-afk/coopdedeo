@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cooperativa Agricola E. De Deo – Olio EVO Biologico</title>
+  <meta name="description" content="Olio extravergine d'oliva biologico DOP dalla Puglia, Murge. Cooperativa fondata nel 1986, 300 soci agricoltori." />
+
+  <!-- Snipcart -->
+  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.3.3/default/snipcart.css" />
+
+  <style>
+    /* ── Reset & base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --olive:   #b5be1e;   /* logo yellow-green */
+      --olive-dark: #8a9114; /* darker shade for text/hover */
+      --olive-deep: #5a5f0a; /* very dark olive for nav text */
+      --gold:    #b5be1e;   /* reuse olive as accent */
+      --green:   #b5be1e;   /* legacy alias → logo color */
+      --cream:   #f8f7e8;
+      --text:    #2a2a0a;
+      --muted:   #6b6b3a;
+      --border:  #dde0a0;
+      --radius:  6px;
+      --max:     960px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ── Lang switcher ── */
+    #lang-bar {
+      background: var(--olive-deep);
+      padding: 8px 24px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 16px;
+    }
+    #lang-bar button {
+      background: none;
+      border: 1px solid rgba(255,255,255,0.4);
+      color: #fff;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      padding: 3px 10px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    #lang-bar button:hover,
+    #lang-bar button.active { background: var(--olive); border-color: var(--olive); color: #fff; }
+
+    /* ── Nav ── */
+    nav {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav .inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .logo img { height: 48px; width: 48px; object-fit: contain; }
+    .logo-text { font-size: 1.05rem; font-weight: bold; color: var(--olive-deep); letter-spacing: 0.02em; line-height: 1.2; }
+    .logo-sub  { font-size: 0.72rem; color: var(--muted); font-style: italic; font-weight: normal; }
+    nav a {
+      color: var(--olive-deep);
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin-left: 28px;
+    }
+    nav a:hover { color: var(--olive); }
+    .cart-btn {
+      background: var(--olive-deep);
+      color: #fff !important;
+      padding: 8px 18px;
+      border-radius: var(--radius);
+      transition: background 0.2s;
+    }
+    .cart-btn:hover { background: var(--olive) !important; color: #fff !important; }
+
+    /* ── Hero ── */
+    #hero {
+      background: linear-gradient(135deg, var(--olive-deep) 0%, var(--olive-dark) 60%, var(--olive) 100%);
+      color: #fff;
+      text-align: center;
+      padding: 80px 24px 72px;
+    }
+    #hero h1 { font-size: clamp(1.8rem, 5vw, 3rem); margin-bottom: 16px; line-height: 1.2; }
+    #hero p { font-size: 1.1rem; max-width: 600px; margin: 0 auto 32px; opacity: 0.9; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.5);
+      color: #fff;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+    }
+
+    /* ── Sections ── */
+    section { padding: 64px 24px; }
+    .inner { max-width: var(--max); margin: 0 auto; }
+    h2 {
+      font-size: 1.8rem;
+      color: var(--olive-deep);
+      margin-bottom: 8px;
+    }
+    .section-divider {
+      width: 48px;
+      height: 3px;
+      background: var(--olive);
+      margin: 0 0 28px;
+    }
+
+    /* ── Story ── */
+    #story { background: #fff; }
+    #story .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    #story .quote {
+      border-left: 4px solid var(--gold);
+      padding-left: 20px;
+      font-style: italic;
+      color: var(--muted);
+      margin: 24px 0;
+    }
+
+    /* ── Oil product ── */
+    #product { background: var(--cream); }
+    #product .grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .product-visual {
+      background: var(--olive-deep);
+      border-radius: 12px;
+      padding: 48px 32px;
+      text-align: center;
+      color: #fff;
+    }
+    .product-visual .tin-icon { font-size: 5rem; display: block; margin-bottom: 12px; }
+    .product-visual .product-name { font-size: 1.3rem; font-weight: bold; letter-spacing: 0.04em; }
+    .product-visual .product-sub { font-size: 0.9rem; opacity: 0.8; margin-top: 4px; }
+    .product-visual .price-tag {
+      margin-top: 20px;
+      background: var(--olive);
+      display: inline-block;
+      padding: 8px 24px;
+      border-radius: 20px;
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
+    .product-visual .price-sub { font-size: 0.8rem; opacity: 0.8; margin-top: 6px; }
+
+    .product-info h2 { margin-bottom: 6px; }
+    .certifications {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 16px 0 24px;
+    }
+    .cert-badge {
+      border: 1px solid var(--olive);
+      color: var(--olive-deep);
+      font-size: 0.78rem;
+      padding: 3px 12px;
+      border-radius: 20px;
+      font-family: sans-serif;
+    }
+    .tasting-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 20px 0;
+    }
+    .tasting-item {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+    }
+    .tasting-item .label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      font-family: sans-serif;
+      margin-bottom: 2px;
+    }
+    .tasting-item .value { font-size: 0.95rem; }
+
+    /* ── Buy box ── */
+    .buy-box {
+      background: #fff;
+      border: 2px solid var(--olive);
+      border-radius: 10px;
+      padding: 28px;
+      margin-top: 28px;
+    }
+    .buy-box h3 { color: var(--olive-deep); margin-bottom: 16px; font-size: 1.1rem; }
+    .qty-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .qty-row label { font-family: sans-serif; font-size: 0.9rem; color: var(--muted); }
+    .qty-row input[type=number] {
+      width: 70px;
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 1rem;
+      text-align: center;
+    }
+    .total-line {
+      font-family: sans-serif;
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .total-line strong { color: var(--text); font-size: 1.1rem; }
+    .buy-btn {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      background: var(--olive-deep);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1.05rem;
+      font-family: 'Georgia', serif;
+      cursor: pointer;
+      transition: background 0.2s;
+      letter-spacing: 0.03em;
+    }
+    .buy-btn:hover { background: var(--olive); }
+    .buy-note {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    /* ── Aroma bar ── */
+    #aroma { background: var(--olive-deep); color: #fff; padding: 56px 24px; }
+    #aroma h2 { color: #fff; }
+    #aroma .section-divider { background: var(--olive); }
+    .aroma-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 20px;
+      margin-top: 28px;
+    }
+    .aroma-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+    }
+    .aroma-card .icon { font-size: 2rem; display: block; margin-bottom: 8px; }
+    .aroma-card .name { font-size: 0.85rem; opacity: 0.9; }
+
+    /* ── Territory ── */
+    #territory { background: #fff; }
+    #territory .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+    .stat-box {
+      background: var(--cream);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin-bottom: 16px;
+      border-left: 4px solid var(--olive);
+    }
+    .stat-box .num { font-size: 2rem; color: var(--olive-dark); font-weight: bold; }
+    .stat-box .desc { font-size: 0.9rem; color: var(--muted); font-family: sans-serif; }
+
+    /* ── Documents ── */
+    #documents { background: var(--cream); }
+    .doc-list { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+    .doc-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 10px 18px;
+      text-decoration: none;
+      color: var(--olive-deep);
+      font-family: sans-serif;
+      font-size: 0.88rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .doc-link:hover { border-color: var(--olive); background: #f6f8d8; }
+
+    /* ── Contact ── */
+    #contact { background: var(--olive-deep); color: #fff; text-align: center; padding: 56px 24px; }
+    #contact h2 { color: #fff; }
+    #contact .section-divider { background: var(--olive); margin: 0 auto 28px; }
+    #contact p { max-width: 500px; margin: 0 auto 8px; opacity: 0.9; }
+    #contact a { color: var(--olive); }
+
+    /* ── Footer ── */
+    footer {
+      background: #1a1a0d;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 36px 24px 24px;
+      font-family: sans-serif;
+      font-size: 0.82rem;
+    }
+    .footer-heritage {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .footer-heritage img {
+      height: 90px;
+      width: 90px;
+      object-fit: cover;
+      border-radius: 6px;
+      opacity: 0.85;
+    }
+    .footer-heritage-text {
+      text-align: left;
+      color: rgba(255,255,255,0.65);
+      font-style: italic;
+      max-width: 280px;
+      line-height: 1.5;
+    }
+    .footer-heritage-text strong { color: rgba(255,255,255,0.85); font-style: normal; }
+
+    /* ── Responsive ── */
+    @media (max-width: 700px) {
+      #story .grid,
+      #product .grid,
+      #territory .grid { grid-template-columns: 1fr; }
+      .tasting-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── i18n ── */
+    [data-lang] { display: none; }
+    .lang-it [data-lang="it"],
+    .lang-en [data-lang="en"],
+    .lang-de [data-lang="de"] { display: revert; }
+  </style>
+</head>
+
+<body class="lang-it">
+
+<!-- ── Language bar ── -->
+<div id="lang-bar">
+  <button onclick="setLang('it')" id="btn-it" class="active">IT</button>
+  <button onclick="setLang('en')" id="btn-en">EN</button>
+  <button onclick="setLang('de')" id="btn-de">DE</button>
+</div>
+
+<!-- ── Nav ── -->
+<nav>
+  <div class="inner">
+    <a class="logo" href="#hero">
+      <img src="logo.png" alt="E. De Deo Cooperativa Agricola" />
+      <div>
+        <div class="logo-text">E. De Deo</div>
+        <div class="logo-sub">Cooperativa Agricola · dal 1976</div>
+      </div>
+    </a>
+    <div>
+      <a href="#story"    data-lang="it">Storia</a>
+      <a href="#story"    data-lang="en">Story</a>
+      <a href="#story"    data-lang="de">Geschichte</a>
+
+      <a href="#product"  data-lang="it">Prodotto</a>
+      <a href="#product"  data-lang="en">Product</a>
+      <a href="#product"  data-lang="de">Produkt</a>
+
+      <a href="#territory" data-lang="it">Territorio</a>
+      <a href="#territory" data-lang="en">Territory</a>
+      <a href="#territory" data-lang="de">Territorium</a>
+
+      <a href="#contact"  data-lang="it">Contatti</a>
+      <a href="#contact"  data-lang="en">Contact</a>
+      <a href="#contact"  data-lang="de">Kontakt</a>
+
+      <a href="#" class="cart-btn snipcart-checkout">
+        <span data-lang="it">🛒 Carrello</span>
+        <span data-lang="en">🛒 Cart</span>
+        <span data-lang="de">🛒 Warenkorb</span>
+        <span class="snipcart-items-count"></span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Hero ── -->
+<section id="hero">
+  <img src="logo.png" alt="E. De Deo" style="height:120px;width:120px;object-fit:contain;margin-bottom:16px;filter:drop-shadow(0 2px 8px rgba(0,0,0,0.3))" />
+  <div class="hero-badge" data-lang="it">Biologico · DOP Castel del Monte · Puglia</div>
+  <div class="hero-badge" data-lang="en">Organic · DOP Castel del Monte · Apulia</div>
+  <div class="hero-badge" data-lang="de">Bio · DOP Castel del Monte · Apulien</div>
+
+  <h1 data-lang="it">Olio Extravergine di Oliva<br>dalla Puglia</h1>
+  <h1 data-lang="en">Extra Virgin Olive Oil<br>from Apulia</h1>
+  <h1 data-lang="de">Natives Olivenöl Extra<br>aus Apulien</h1>
+
+  <p data-lang="it">Monocultivar Coratina biologico, raccolto a mano sulle Murge a 400–600 m s.l.m. Prodotto dalla Cooperativa Agricola E. De Deo, fondata nel 1976 a Minervino Murge.</p>
+  <p data-lang="en">Organic Coratina monocultivar, hand-harvested on the Murge plateau at 400–600 m altitude. Produced by Cooperativa Agricola E. De Deo, founded in 1976 in Minervino Murge.</p>
+  <p data-lang="de">Biologisches Coratina-Monocultivar, handgeerntet auf den Murge-Hochebenen in 400–600 m Höhe. Erzeugt von der Cooperativa Agricola E. De Deo, gegründet 1976 in Minervino Murge.</p>
+
+  <a href="#product">
+    <button style="background:#fff;border:none;color:var(--olive-deep);padding:14px 36px;font-size:1rem;border-radius:6px;cursor:pointer;font-family:Georgia,serif;letter-spacing:0.03em;font-weight:bold;">
+      <span data-lang="it">Acquista ora →</span>
+      <span data-lang="en">Buy now →</span>
+      <span data-lang="de">Jetzt kaufen →</span>
+    </button>
+  </a>
+</section>
+
+<!-- ── Story ── -->
+<section id="story">
+  <div class="inner">
+    <div class="grid">
+      <div>
+        <h2 data-lang="it">La nostra storia</h2>
+        <h2 data-lang="en">Our story</h2>
+        <h2 data-lang="de">Unsere Geschichte</h2>
+        <div class="section-divider"></div>
+
+        <p data-lang="it">La cooperativa porta il nome di <strong>Emanuele de Deo</strong>, martire rivoluzionario napoletano impiccato nel 1792 a soli 22 anni per aver rifiutato, anche sotto tortura, di tradire i suoi compagni. Un simbolo di solidarietà e coraggio che ancora ispira la nostra comunità.</p>
+        <p data-lang="en">The cooperative takes its name from <strong>Emanuele de Deo</strong>, a Neapolitan revolutionary martyr hanged in 1792 at just 22 years old for refusing, even under torture, to betray his companions. A symbol of solidarity and courage that still inspires our community.</p>
+        <p data-lang="de">Die Kooperative trägt den Namen von <strong>Emanuele de Deo</strong>, einem neapolitanischen Revolutionsmärtyrer, der 1792 im Alter von nur 22 Jahren hingerichtet wurde, weil er sich weigerte, selbst unter Folter seine Gefährten zu verraten. Ein Symbol der Solidarität und des Mutes, das unsere Gemeinschaft bis heute inspiriert.</p>
+
+        <blockquote class="quote" data-lang="it">"Kennengelernten durch einen Fußballaustausch" – così è nata la partnership con arteFakt nel 2004, quando Conrad arrivò nelle Murge.</blockquote>
+        <blockquote class="quote" data-lang="en">"We got to know each other through a football exchange" – that's how the partnership with arteFakt began in 2004, when Conrad arrived in the Murge highlands.</blockquote>
+        <blockquote class="quote" data-lang="de">„Wir haben uns durch einen Fußballaustausch kennengelernt" – so begann 2004 die Partnerschaft mit arteFakt, als Conrad in die Murge-Region kam.</blockquote>
+      </div>
+      <div>
+        <p data-lang="it">Fondata nel <strong>1976</strong> per commercializzare la produzione cerealicola, olivicola e ortofrutticola dei piccoli agricoltori locali, la cooperativa è nata per proteggere i contadini dagli intermediari speculativi. Prima della cooperativa, i piccoli produttori erano costretti ad accettare qualunque prezzo i commercianti offrissero, o a vedere i loro raccolti marcire nei campi.</p>
+        <p data-lang="en">Founded in <strong>1976</strong> to market the cereal, olive, and vegetable production of local smallholders, the cooperative was born to protect farmers from exploitative middlemen. Before it existed, small producers had to accept whatever price traders offered — or watch their harvests rot in the fields.</p>
+        <p data-lang="de">Die Kooperative wurde <strong>1976</strong> gegründet, um die Getreide-, Oliven- und Gemüseproduktion der lokalen Kleinbauern zu vermarkten. Sie entstand als Schutz vor ausbeuterischen Zwischenhändlern. Vor ihrer Gründung waren kleine Erzeuger gezwungen, jeden Preis der Händler zu akzeptieren — oder zu sehen, wie ihre Ernten auf den Feldern verrotteten.</p>
+
+        <p style="margin-top:20px" data-lang="it">Oggi la cooperativa conta <strong>300 soci</strong> e sette dipendenti. Il frantoio è gestito da <strong>Giulio Sciascia</strong> che, dal 1999, si è dedicato al miglioramento continuo del processo di estrazione con particolare attenzione alla qualità del decanter.</p>
+        <p style="margin-top:20px" data-lang="en">Today the cooperative has <strong>300 members</strong> and seven employees. The olive mill is managed by <strong>Giulio Sciascia</strong> who, since 1999, has continuously improved the extraction process with particular attention to decanter quality.</p>
+        <p style="margin-top:20px" data-lang="de">Heute hat die Kooperative <strong>300 Mitglieder</strong> und sieben Angestellte. Das Olivenölmühle wird von <strong>Giulio Sciascia</strong> geleitet, der seit 1999 den Extraktionsprozess kontinuierlich verbessert, mit besonderem Augenmerk auf die Qualität des Dekanters.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Product ── -->
+<section id="product">
+  <div class="inner">
+    <div class="grid">
+      <!-- Visual -->
+      <div class="product-visual">
+        <span class="tin-icon">🫙</span>
+        <div class="product-name">No. 7 Fruchtig</div>
+        <div class="product-sub">Coratina · Bio · DOP</div>
+        <div class="price-tag">€50</div>
+        <div class="price-sub" data-lang="it">latta da 5 litri</div>
+        <div class="price-sub" data-lang="en">5-litre tin</div>
+        <div class="price-sub" data-lang="de">5-Liter-Kanne</div>
+      </div>
+
+      <!-- Info + buy -->
+      <div class="product-info">
+        <h2 data-lang="it">Olio EVO Biologico No. 7</h2>
+        <h2 data-lang="en">Organic EVO Oil No. 7</h2>
+        <h2 data-lang="de">Bio-Olivenöl No. 7 Fruchtig</h2>
+        <div class="section-divider"></div>
+
+        <div class="certifications">
+          <span class="cert-badge">🌿 100% Bio · DE-ÖKO-001</span>
+          <span class="cert-badge">🏅 DOP Castel del Monte</span>
+          <span class="cert-badge">🫒 Coratina Monocultivar</span>
+          <span class="cert-badge">📍 Murge, Apulia · 400–600 m</span>
+        </div>
+
+        <p data-lang="it">Un olio fruttato con aromi floreali delicati, note di carciofo e un finale leggermente pepato. L'alta concentrazione di composti bioattivi secondari della varietà Coratina lo rende non solo straordinariamente saporito, ma anche eccezionale dal punto di vista nutrizionale.</p>
+        <p data-lang="en">A fruity oil with delicate floral aromas, artichoke notes and a slightly peppery finish. The high concentration of bioactive secondary plant compounds in the Coratina variety makes it not only exceptionally flavourful but nutritionally outstanding.</p>
+        <p data-lang="de">Ein fruchtiges Öl mit zart-floralen Aromen, Artischockennoten und einem leicht pfeffrigen Abgang. Die hohe Konzentration bioaktiver Sekundärpflanzenverbindungen der Coratina-Sorte macht es nicht nur geschmacklich außergewöhnlich, sondern auch ernährungsphysiologisch herausragend.</p>
+
+        <div class="tasting-grid">
+          <div class="tasting-item">
+            <div class="label" data-lang="it">Varietà</div>
+            <div class="label" data-lang="en">Variety</div>
+            <div class="label" data-lang="de">Sorte</div>
+            <div class="value">Coratina</div>
+          </div>
+          <div class="tasting-item">
+            <div class="label" data-lang="it">Altitudine</div>
+            <div class="label" data-lang="en">Altitude</div>
+            <div class="label" data-lang="de">Höhenlage</div>
+            <div class="value">400–600 m</div>
+          </div>
+          <div class="tasting-item">
+            <div class="label" data-lang="it">Raccolta</div>
+            <div class="label" data-lang="en">Harvest</div>
+            <div class="label" data-lang="de">Ernte</div>
+            <div class="value" data-lang="it">A mano · 2025</div>
+            <div class="value" data-lang="en">Hand-picked · 2025</div>
+            <div class="value" data-lang="de">Handgelesen · 2025</div>
+          </div>
+          <div class="tasting-item">
+            <div class="label" data-lang="it">Conservazione</div>
+            <div class="label" data-lang="en">Best before</div>
+            <div class="label" data-lang="de">Haltbarkeit</div>
+            <div class="value" data-lang="it">Fino a ottobre 2027</div>
+            <div class="value" data-lang="en">Until October 2027</div>
+            <div class="value" data-lang="de">Bis Oktober 2027</div>
+          </div>
+        </div>
+
+        <!-- Buy box -->
+        <div class="buy-box">
+          <h3 data-lang="it">Aggiungi al carrello</h3>
+          <h3 data-lang="en">Add to cart</h3>
+          <h3 data-lang="de">In den Warenkorb</h3>
+
+          <div class="qty-row">
+            <label data-lang="it">Quantità (latte da 5 L):</label>
+            <label data-lang="en">Quantity (5 L tins):</label>
+            <label data-lang="de">Menge (5-L-Kannen):</label>
+            <input type="number" id="qty" value="1" min="1" max="99" oninput="updateTotal()" />
+          </div>
+          <div class="total-line">
+            <span data-lang="it">Totale: </span>
+            <span data-lang="en">Total: </span>
+            <span data-lang="de">Gesamt: </span>
+            <strong id="total-display">€50.00</strong>
+          </div>
+
+          <button
+            class="buy-btn snipcart-add-item"
+            data-item-id="evo-5l"
+            data-item-name="Olio EVO Bio No.7 – Latta 5 L"
+            data-item-price="50.00"
+            data-item-url="/index.html"
+            data-item-description="Olio extravergine d'oliva biologico Coratina DOP Castel del Monte – 5 litri"
+            data-item-quantity="1"
+            id="add-to-cart-btn"
+          >
+            <span data-lang="it">🛒 Aggiungi al carrello</span>
+            <span data-lang="en">🛒 Add to cart</span>
+            <span data-lang="de">🛒 In den Warenkorb</span>
+          </button>
+          <p class="buy-note" data-lang="it">Spedizione calcolata al checkout · Pagamento sicuro con Stripe</p>
+          <p class="buy-note" data-lang="en">Shipping calculated at checkout · Secure payment via Stripe</p>
+          <p class="buy-note" data-lang="de">Versandkosten werden beim Checkout berechnet · Sichere Zahlung via Stripe</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Aroma ── -->
+<section id="aroma">
+  <div class="inner">
+    <h2 data-lang="it">Profilo aromatico</h2>
+    <h2 data-lang="en">Aroma profile</h2>
+    <h2 data-lang="de">Aromaprofil</h2>
+    <div class="section-divider"></div>
+
+    <p data-lang="it">L'olio No. 7 esprime la complessità aromatica tipica della Coratina: fruttato medio con note floreali, erbacee e una piacevole sensazione piccante.</p>
+    <p data-lang="en">Oil No. 7 expresses the aromatic complexity typical of Coratina: medium fruity with floral, herbaceous notes and a pleasant peppery sensation.</p>
+    <p data-lang="de">Das Öl Nr. 7 zeigt die typische Aromakomplexität der Coratina: mittelfruchtig mit floralen, krautigen Noten und angenehmer Schärfe.</p>
+
+    <div class="aroma-grid">
+      <div class="aroma-card">
+        <span class="icon">🌸</span>
+        <div class="name" data-lang="it">Floreale delicato</div>
+        <div class="name" data-lang="en">Delicate floral</div>
+        <div class="name" data-lang="de">Zart-floral</div>
+      </div>
+      <div class="aroma-card">
+        <span class="icon">🌿</span>
+        <div class="name" data-lang="it">Erbaceo · Carciofo</div>
+        <div class="name" data-lang="en">Herbaceous · Artichoke</div>
+        <div class="name" data-lang="de">Kräuterig · Artischocke</div>
+      </div>
+      <div class="aroma-card">
+        <span class="icon">🍋</span>
+        <div class="name" data-lang="it">Note fruttate</div>
+        <div class="name" data-lang="en">Fruity notes</div>
+        <div class="name" data-lang="de">Fruchtige Noten</div>
+      </div>
+      <div class="aroma-card">
+        <span class="icon">🌶️</span>
+        <div class="name" data-lang="it">Finale pepato</div>
+        <div class="name" data-lang="en">Peppery finish</div>
+        <div class="name" data-lang="de">Pfeffriger Abgang</div>
+      </div>
+      <div class="aroma-card">
+        <span class="icon">🌱</span>
+        <div class="name" data-lang="it">Fresco · Vegetale</div>
+        <div class="name" data-lang="en">Fresh · Vegetal</div>
+        <div class="name" data-lang="de">Frisch · Pflanzlich</div>
+      </div>
+      <div class="aroma-card">
+        <span class="icon">💨</span>
+        <div class="name" data-lang="it">Leggero affumicato</div>
+        <div class="name" data-lang="en">Light smoky</div>
+        <div class="name" data-lang="de">Leicht rauchig</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Territory ── -->
+<section id="territory">
+  <div class="inner">
+    <div class="grid">
+      <div>
+        <h2 data-lang="it">Il territorio</h2>
+        <h2 data-lang="en">The territory</h2>
+        <h2 data-lang="de">Das Territorium</h2>
+        <div class="section-divider"></div>
+
+        <p data-lang="it">La sede della cooperativa si trova in posizione panoramica sulle prime propaggini della Murgia barese, a Minervino Murge (BT), Puglia. L'area DOP "Terra di Bari – Castel del Monte" garantisce le condizioni pedoclimatiche ideali per la Coratina: sbalzi termici, suoli calcarei e ventilazione naturale.</p>
+        <p data-lang="en">The cooperative is situated with panoramic views over the foothills of the Bari Murge plateau, in Minervino Murge (BT), Apulia. The DOP area "Terra di Bari – Castel del Monte" provides ideal soil and climate conditions for Coratina: temperature swings, limestone soils and natural ventilation.</p>
+        <p data-lang="de">Die Kooperative liegt an einem Panoramastandort an den ersten Ausläufern der Murge bei Bari, in Minervino Murge (BT), Apulien. Das DOP-Gebiet „Terra di Bari – Castel del Monte" bietet ideale Boden- und Klimabedingungen für die Coratina: Temperaturschwankungen, Kalksteinböden und natürliche Belüftung.</p>
+
+        <p style="margin-top:20px" data-lang="it">Le olive vengono raccolte a mano tra ottobre e novembre, quando il frutto è ancora parzialmente invaiaturo, per garantire la massima concentrazione di polifenoli e aromi.</p>
+        <p style="margin-top:20px" data-lang="en">The olives are hand-harvested between October and November, when the fruit is still only partially ripe, to ensure maximum concentration of polyphenols and aromas.</p>
+        <p style="margin-top:20px" data-lang="de">Die Oliven werden zwischen Oktober und November von Hand geerntet, wenn die Frucht noch nur teilweise gereift ist, um die maximale Konzentration von Polyphenolen und Aromen zu sichern.</p>
+      </div>
+      <div>
+        <div class="stat-box">
+          <div class="num">1976</div>
+          <div class="desc" data-lang="it">Anno di fondazione della cooperativa</div>
+          <div class="desc" data-lang="en">Year the cooperative was founded</div>
+          <div class="desc" data-lang="de">Gründungsjahr der Kooperative</div>
+        </div>
+        <div class="stat-box">
+          <div class="num">300</div>
+          <div class="desc" data-lang="it">Soci agricoltori</div>
+          <div class="desc" data-lang="en">Farmer members</div>
+          <div class="desc" data-lang="de">Landwirtschaftliche Mitglieder</div>
+        </div>
+        <div class="stat-box">
+          <div class="num">400–600 m</div>
+          <div class="desc" data-lang="it">Altitudine dei vigneti sulle Murge</div>
+          <div class="desc" data-lang="en">Altitude of the olive groves on the Murge</div>
+          <div class="desc" data-lang="de">Höhenlage der Olivenhaine auf den Murge</div>
+        </div>
+        <div class="stat-box">
+          <div class="num">2004</div>
+          <div class="desc" data-lang="it">Inizio della partnership con arteFakt</div>
+          <div class="desc" data-lang="en">Start of the partnership with arteFakt</div>
+          <div class="desc" data-lang="de">Beginn der Partnerschaft mit arteFakt</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Uses ── -->
+<section id="uses" style="background:#fff; padding:56px 24px;">
+  <div class="inner">
+    <h2 data-lang="it">Come usarlo</h2>
+    <h2 data-lang="en">How to use it</h2>
+    <h2 data-lang="de">Verwendungsempfehlungen</h2>
+    <div class="section-divider"></div>
+    <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:20px; margin-top:24px;">
+      <div style="padding:20px; border:1px solid var(--border); border-radius:8px;">
+        <div style="font-size:1.8rem; margin-bottom:8px;">🥗</div>
+        <p data-lang="it"><strong>A crudo</strong> – vinaigrette su insalate di pomodoro e verdure, pesto con erbe selvatiche</p>
+        <p data-lang="en"><strong>Raw</strong> – vinaigrettes on tomato and vegetable salads, pesto with wild herbs</p>
+        <p data-lang="de"><strong>Roh</strong> – Vinaigrettes auf Tomaten- und Gemüsesalaten, Pesto mit Wildkräutern</p>
+      </div>
+      <div style="padding:20px; border:1px solid var(--border); border-radius:8px;">
+        <div style="font-size:1.8rem; margin-bottom:8px;">🍳</div>
+        <p data-lang="it"><strong>In cottura</strong> – saltare verdure fino a 130 °C: radici, verdure a foglia, crucifere</p>
+        <p data-lang="en"><strong>Cooking</strong> – sauté vegetables up to 130°C: root vegetables, leafy greens, cruciferous</p>
+        <p data-lang="de"><strong>Beim Kochen</strong> – Gemüse bis 130 °C anbraten: Wurzelgemüse, Blattgemüse, Kreuzblütler</p>
+      </div>
+      <div style="padding:20px; border:1px solid var(--border); border-radius:8px;">
+        <div style="font-size:1.8rem; margin-bottom:8px;">🫘</div>
+        <p data-lang="it"><strong>Abbinamenti</strong> – purè di patate e pastinaca, zuppe di legumi, bruschette</p>
+        <p data-lang="en"><strong>Pairings</strong> – potato-parsnip purée, bean soups, bruschetta</p>
+        <p data-lang="de"><strong>Kombinationen</strong> – Kartoffel-Pastinaken-Püree, Hülsenfrüchtesuppen, Bruschetta</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Documents ── -->
+<section id="documents">
+  <div class="inner">
+    <h2 data-lang="it">Documentazione</h2>
+    <h2 data-lang="en">Documentation</h2>
+    <h2 data-lang="de">Dokumentation</h2>
+    <div class="section-divider"></div>
+    <p data-lang="it">Tutta la documentazione tecnica e analitica è disponibile per il download.</p>
+    <p data-lang="en">All technical and analytical documentation is available for download.</p>
+    <p data-lang="de">Die gesamte technische und analytische Dokumentation steht zum Download bereit.</p>
+
+    <div class="doc-list">
+      <a class="doc-link" href="https://cdn.artefakt.eu/pdf/Produktpass/Olivenoelpass_No7_fruchtig.pdf" target="_blank" rel="noopener">
+        📄 <span data-lang="it">Scheda prodotto (DE)</span>
+        <span data-lang="en">Product passport (DE)</span>
+        <span data-lang="de">Produktpass</span>
+      </a>
+      <a class="doc-link" href="https://cdn.artefakt.eu/pdf/arteFakt_Aromaprofile.pdf" target="_blank" rel="noopener">
+        🌸 <span data-lang="it">Profilo aromatico (DE)</span>
+        <span data-lang="en">Aroma profile (DE)</span>
+        <span data-lang="de">Aromaprofil</span>
+      </a>
+      <a class="doc-link" href="https://cdn.artefakt.eu/pdf/Analyse/Analyse_2026_No7_fruchtig.pdf" target="_blank" rel="noopener">
+        🔬 <span data-lang="it">Analisi biochimica 2026 (DE)</span>
+        <span data-lang="en">Biochemical analysis 2026 (DE)</span>
+        <span data-lang="de">Biochemische Analyse 2026</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Contact ── -->
+<section id="contact">
+  <div class="inner">
+    <h2 data-lang="it">Contatti</h2>
+    <h2 data-lang="en">Contact</h2>
+    <h2 data-lang="de">Kontakt</h2>
+    <div class="section-divider"></div>
+
+    <p><strong>Cooperativa Agricola E. De Deo</strong></p>
+    <p>Contrada Chianche, 21 · Minervino Murge (BT) · Puglia, Italia</p>
+    <p>Tel/Fax: <a href="tel:+390883692941">0883 692941</a></p>
+    <p style="margin-top:8px;" data-lang="it">Orari: 9:00–13:00 / 16:00–19:00 (chiuso nei giorni festivi)</p>
+    <p style="margin-top:8px;" data-lang="en">Hours: 9:00–13:00 / 16:00–19:00 (closed on holidays)</p>
+    <p style="margin-top:8px;" data-lang="de">Öffnungszeiten: 9:00–13:00 / 16:00–19:00 (an Feiertagen geschlossen)</p>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="footer-heritage">
+    <img src="old-branding.jpeg" alt="Etichetta storica De Deo" />
+    <div class="footer-heritage-text">
+      <strong>Emanuele de Deo</strong> · 1769–1792<br>
+      Martire rivoluzionario napoletano. Il suo spirito di solidarietà vive nella nostra cooperativa.
+    </div>
+  </div>
+  <p>© 2025 Cooperativa Agricola E. De Deo · Minervino Murge (BT) · P.IVA / C.F. da inserire</p>
+  <p style="margin-top:6px;">
+    <span data-lang="it">Pagamenti sicuri gestiti da Stripe · Carrello gestito da Snipcart</span>
+    <span data-lang="en">Secure payments by Stripe · Cart by Snipcart</span>
+    <span data-lang="de">Sichere Zahlungen über Stripe · Warenkorb von Snipcart</span>
+  </p>
+</footer>
+
+<!-- ── Snipcart ── -->
+<div hidden id="snipcart" data-api-key="N2RhMGQ3MjYtZTM3My00YWM2LTk5YjctYjBlNmNmZDVmMzdlNjM5MTQzNTY0MzMzMjMyNDUy" data-currency="eur"></div>
+<script async src="https://cdn.snipcart.com/themes/v3.3.3/default/snipcart.js"></script>
+
+<script>
+  /* ── Language switcher ── */
+  function setLang(lang) {
+    document.body.className = 'lang-' + lang;
+    document.querySelectorAll('#lang-bar button').forEach(b => b.classList.remove('active'));
+    document.getElementById('btn-' + lang).classList.add('active');
+    // Persist choice
+    localStorage.setItem('lang', lang);
+  }
+
+  // Restore saved language or detect from browser
+  (function() {
+    const saved = localStorage.getItem('lang');
+    if (saved) { setLang(saved); return; }
+    const bl = navigator.language.slice(0,2).toLowerCase();
+    if (['it','en','de'].includes(bl)) setLang(bl);
+  })();
+
+  /* ── Quantity → total + Snipcart quantity sync ── */
+  function updateTotal() {
+    const qty = Math.max(1, parseInt(document.getElementById('qty').value) || 1);
+    const total = (qty * 50).toFixed(2);
+    document.getElementById('total-display').textContent = '€' + total;
+    document.getElementById('add-to-cart-btn').setAttribute('data-item-quantity', qty);
+  }
+</script>
+
+</body>
+</html>
